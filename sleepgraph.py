@@ -807,24 +807,40 @@ class SystemValues:
 				break
 		self.vprint('Setting trace buffers to %d kB (%d kB per cpu)' % (tgtsize, tgtsize/cpus))
 		# initialize the callgraph trace
+		pprint('To INITIALIZE callgraph')
 		if(self.usecallgraph):
 			# set trace type
+			pprint('INITIALIZING callgraph.1')
 			self.fsetVal('function_graph', 'current_tracer')
+			pprint('INITIALIZING callgraph.2')
 			self.fsetVal('', 'set_ftrace_filter')
 			# temporary hack to fix https://bugzilla.kernel.org/show_bug.cgi?id=212761
+			pprint('INITIALIZING callgraph.2')
 			fp = open(self.tpath+'set_ftrace_notrace', 'w')
+			pprint('INITIALIZING callgraph.3')
 			fp.write('native_queued_spin_lock_slowpath\ndev_driver_string')
-			fp.close()
+			pprint('INITIALIZING callgraph.4')
+			# fp.close()
 			# set trace format options
+			pprint('INITIALIZING callgraph.5')
 			self.fsetVal('print-parent', 'trace_options')
+			pprint('INITIALIZING callgraph.6')
 			self.fsetVal('funcgraph-abstime', 'trace_options')
+			pprint('INITIALIZING callgraph.7')
 			self.fsetVal('funcgraph-cpu', 'trace_options')
+			pprint('INITIALIZING callgraph.8')
 			self.fsetVal('funcgraph-duration', 'trace_options')
+			pprint('INITIALIZING callgraph.9')
 			self.fsetVal('funcgraph-proc', 'trace_options')
+			pprint('INITIALIZING callgraph.10')
 			self.fsetVal('funcgraph-tail', 'trace_options')
+			pprint('INITIALIZING callgraph.11')
 			self.fsetVal('nofuncgraph-overhead', 'trace_options')
+			pprint('INITIALIZING callgraph.12')
 			self.fsetVal('context-info', 'trace_options')
+			pprint('INITIALIZING callgraph.13')
 			self.fsetVal('graph-time', 'trace_options')
+			pprint('INITIALIZING callgraph.14')
 			self.fsetVal('%d' % self.max_graph_depth, 'max_graph_depth')
 			cf = ['dpm_run_callback']
 			if(self.usetraceevents):
